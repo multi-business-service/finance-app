@@ -1,9 +1,12 @@
-package com.bezkoder.spring.datajpa.controller;
+package com.business.finance.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.business.finance.model.Tutorial;
+import com.business.finance.request.FinanceRequest;
+import com.business.finance.response.FinanceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +21,66 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bezkoder.spring.datajpa.model.Tutorial;
-import com.bezkoder.spring.datajpa.repository.TutorialRepository;
+import com.business.finance.repository.TutorialRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
-public class TutorialController {
+public class FinanceAppController {
 
 	@Autowired
 	TutorialRepository tutorialRepository;
+
+
+	/**
+	 * This gives all finance entries irrective of business type
+	 * @param title
+	 * @return
+	 */
+	@GetMapping("/finance")
+	public FinanceRequest getAllFinance(@RequestParam(required = false) String title) {
+		try {
+			return null;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@GetMapping("/finance/{businessType}")
+	public ResponseEntity<Tutorial> getFinanceDataForBusiness(@PathVariable("businessType") String buisnessType) {
+//		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
+
+//		if (tutorialData.isPresent()) {
+//			return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+		return null;
+	}
+
+	@PostMapping("/finance")
+	public FinanceResponse addfinance(@RequestBody FinanceRequest financeRequest) {
+		try {
+//			Tutorial _tutorial = tutorialRepository
+//					.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
+			return null;
+		} catch (Exception e) {
+			return null;
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/finance/{userId}")
+	public ResponseEntity<Tutorial> getFinanceDataForUser(@PathVariable("userId") String userId) {
+//		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
+
+//		if (tutorialData.isPresent()) {
+//			return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+		return null;
+	}
 
 	@GetMapping("/tutorials")
 	public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
@@ -48,6 +101,7 @@ public class TutorialController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 
 	@GetMapping("/tutorials/{id}")
 	public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {

@@ -1,4 +1,4 @@
-package com.bezkoder.spring.datajpa.model;
+package com.business.finance.model;
 
 import javax.persistence.*;
 
