@@ -13,4 +13,9 @@ public class AppEnumConstants {
         MONTH,
         YEAR;
     }
+
+    public enum MemberRole {
+        ADMIN,
+        MEMBER
+    }
 }
