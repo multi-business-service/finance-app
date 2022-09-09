@@ -1,4 +1,4 @@
-package com.business.finance.model.customer;
+package com.business.finance.model;
 
 import com.business.finance.constrants.AppEnumConstants;
 import com.business.finance.helper.SequenceIdGenerator;

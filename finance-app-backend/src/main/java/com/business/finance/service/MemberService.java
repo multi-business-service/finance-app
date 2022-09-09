@@ -1,6 +1,6 @@
 package com.business.finance.service;
 
-import com.business.finance.model.customer.MemberEntity;
+import com.business.finance.model.MemberEntity;
 import com.business.finance.repository.MemberRepository;
 import com.business.finance.request.MemberInfoRequest;
 import com.business.finance.response.MemberResponse;

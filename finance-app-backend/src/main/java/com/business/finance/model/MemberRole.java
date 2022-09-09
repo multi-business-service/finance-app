@@ -1,4 +1,4 @@
-package com.business.finance.model.customer;
+package com.business.finance.model;
 
 import lombok.Data;
 
