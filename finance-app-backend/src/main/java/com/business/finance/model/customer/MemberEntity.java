@@ -14,7 +14,7 @@ import org.hibernate.annotations.Parameter;
 		schema = "customer",
 		name = "member_info"
 )
-public class CustomerInfoEntity {
+public class MemberEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer.member_seq")

@@ -4,7 +4,7 @@ import com.business.finance.constrants.AppEnumConstants;
 import lombok.Data;
 
 @Data
-public class MemberInfoResponse {
+public class MemberResponse {
 
     String firstName;
     String lastName;

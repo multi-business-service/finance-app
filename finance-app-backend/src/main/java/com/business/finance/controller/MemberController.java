@@ -2,10 +2,12 @@ package com.business.finance.controller;
 
 
 import com.business.finance.request.MemberInfoRequest;
-import com.business.finance.response.MemberInfoResponse;
+import com.business.finance.response.MemberResponse;
+import com.business.finance.response.MembersResponse;
 import com.business.finance.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
 
     @Autowired
-    MemberService customerService;
+    MemberService memberService;
 
     @PostMapping("/add-member")
-    public ResponseEntity<MemberInfoResponse> addCustomer(@RequestBody MemberInfoRequest memberInfoRequest) {
-        return ResponseEntity.ok(customerService.addCustomerInfo(memberInfoRequest));
+    public ResponseEntity<String> addMember(@RequestBody MemberInfoRequest memberInfoRequest) {
+        return ResponseEntity.ok(memberService.addCustomerInfo(memberInfoRequest));
+    }
+    @GetMapping("/members")
+    public ResponseEntity<MembersResponse> getAllMembers() {
+        return ResponseEntity.ok(memberService.getAllMembers());
     }
 }

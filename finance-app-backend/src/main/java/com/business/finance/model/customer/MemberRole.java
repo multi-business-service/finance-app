@@ -13,7 +13,7 @@ import javax.persistence.Table;
         schema = "customer",
         name = "member_role"
 )
-public class CustomerRole {
+public class MemberRole {
 
     @Id
     @Column(name="member_role")
