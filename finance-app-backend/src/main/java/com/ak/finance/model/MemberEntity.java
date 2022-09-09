@@ -20,7 +20,7 @@ public class MemberEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer.member_seq")
 	@GenericGenerator(
 			name = "customer.member_seq",
-			strategy = "com.business.finance.helper.SequenceIdGenerator",
+			strategy = "com.ak.finance.helper.SequenceIdGenerator",
 			parameters = {
 					@Parameter(name = SequenceIdGenerator.INCREMENT_PARAM, value = "1"),
 					@Parameter(name = SequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "MEM"),
