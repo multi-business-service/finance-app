@@ -10,6 +10,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -27,8 +28,8 @@ public class MemberService {
         return getAllMemberResponse(memberRepository.findAll(), isMemberIdRequire);
     }
 
-    public MemberResponse getMember(String memberId){
-        return modelMapper.map(memberRepository.findById(memberId), MemberResponse.class);
+    public MemberResponse getMember(BigInteger mobileNo){
+        return modelMapper.map(memberRepository.findByMobileNo(mobileNo), MemberResponse.class);
     }
 
     private String memberAddedResponse(MemberEntity customerInfoEntity){

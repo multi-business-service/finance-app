@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
+
 //@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/finance")
@@ -32,8 +34,8 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getAllMembers(isMemberIdRequire));
     }
 
-    @GetMapping("/members/{memberId}")
-    public ResponseEntity<MemberResponse> getMember(@PathVariable String memberId) {
-        return ResponseEntity.ok(memberService.getMember(memberId));
+    @GetMapping("/members/{mobileNo}")
+    public ResponseEntity<MemberResponse> getMember(@PathVariable BigInteger mobileNo) {
+        return ResponseEntity.ok(memberService.getMember(mobileNo));
     }
 }
