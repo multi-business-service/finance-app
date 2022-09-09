@@ -27,6 +27,10 @@ public class MemberService {
         return getAllMemberResponse(memberRepository.findAll(), isMemberIdRequire);
     }
 
+    public MemberResponse getMember(String memberId){
+        return modelMapper.map(memberRepository.findById(memberId), MemberResponse.class);
+    }
+
     private String memberAddedResponse(MemberEntity customerInfoEntity){
         return  customerInfoEntity.getFirstName()
                 .concat(" Joined successfully and member id ")
@@ -37,7 +41,6 @@ public class MemberService {
     private MembersResponse getAllMemberResponse(List<MemberEntity> memberList, boolean isMemberIdRequire){
 
         // TO-DO isMemberIdRequire help on decide to send member id or not
-
         MembersResponse membersResponse = new MembersResponse();
         membersResponse.setMembersResponse(modelMapper.map(memberList, new TypeToken<List<MemberResponse>>() {}.getType()));
         return membersResponse;
