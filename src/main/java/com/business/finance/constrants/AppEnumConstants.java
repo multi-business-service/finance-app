@@ -1,5 +1,10 @@
 package com.business.finance.constrants;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+
+@Data
 public class AppEnumConstants {
     public enum BusinessType{
         LOAN,
@@ -14,8 +19,10 @@ public class AppEnumConstants {
         YEAR;
     }
 
+    @AllArgsConstructor
     public enum MemberRole {
-        ADMIN,
-        MEMBER
-    }
+        ADMIN("ADMIN"),
+        MEMBER("MEMBER");
+        @Getter private String value;
+        }
 }
