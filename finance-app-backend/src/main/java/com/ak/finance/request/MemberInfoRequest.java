@@ -1,7 +1,6 @@
-package com.business.finance.request;
+package com.ak.finance.request;
 
-import com.business.finance.constrants.AppEnumConstants;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ak.finance.constrants.AppEnumConstants;
 import com.sun.istack.NotNull;
 import lombok.Data;
 

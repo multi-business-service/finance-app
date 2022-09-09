@@ -1,10 +1,10 @@
-package com.business.finance.service;
+package com.ak.finance.service;
 
-import com.business.finance.model.MemberEntity;
-import com.business.finance.repository.MemberRepository;
-import com.business.finance.request.MemberInfoRequest;
-import com.business.finance.response.MemberResponse;
-import com.business.finance.response.MembersResponse;
+import com.ak.finance.model.MemberEntity;
+import com.ak.finance.repository.MemberRepository;
+import com.ak.finance.request.MemberInfoRequest;
+import com.ak.finance.response.MemberResponse;
+import com.ak.finance.response.MembersResponse;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

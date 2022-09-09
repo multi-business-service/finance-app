@@ -1,6 +1,6 @@
-package com.business.finance.response;
+package com.ak.finance.response;
 
-import com.business.finance.constrants.AppEnumConstants;
+import com.ak.finance.constrants.AppEnumConstants;
 import lombok.Data;
 
 @Data

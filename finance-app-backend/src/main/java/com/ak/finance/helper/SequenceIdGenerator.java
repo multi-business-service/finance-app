@@ -1,4 +1,4 @@
-package com.business.finance.helper;
+package com.ak.finance.helper;
 
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;

@@ -1,10 +1,9 @@
-package com.business.finance.controller;
+package com.ak.finance.controller;
 
 
-import com.business.finance.request.MemberInfoRequest;
-import com.business.finance.response.MemberResponse;
-import com.business.finance.response.MembersResponse;
-import com.business.finance.service.MemberService;
+import com.ak.finance.request.MemberInfoRequest;
+import com.ak.finance.response.MembersResponse;
+import com.ak.finance.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

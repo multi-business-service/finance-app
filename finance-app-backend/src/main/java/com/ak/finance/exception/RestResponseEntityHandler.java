@@ -1,4 +1,4 @@
-package com.business.finance.exception;
+package com.ak.finance.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

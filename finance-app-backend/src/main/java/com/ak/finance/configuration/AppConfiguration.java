@@ -1,4 +1,4 @@
-package com.business.finance.configuration;
+package com.ak.finance.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

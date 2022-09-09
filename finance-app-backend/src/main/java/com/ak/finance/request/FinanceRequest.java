@@ -1,4 +1,4 @@
-package com.business.finance.request;
+package com.ak.finance.request;
 
 import com.business.finance.common.LendingDetail;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.business.finance.response;
+package com.ak.finance.response;
 
 import lombok.Data;
 
