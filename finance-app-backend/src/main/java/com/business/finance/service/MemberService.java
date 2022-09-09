@@ -23,8 +23,8 @@ public class MemberService {
         return memberAddedResponse(memberRepository.save(modelMapper.map(customerInfoRequest, MemberEntity.class)));
     }
 
-    public MembersResponse getAllMembers(){
-        return getAllMemberResponse(memberRepository.findAll());
+    public MembersResponse getAllMembers(boolean isMemberIdRequire){
+        return getAllMemberResponse(memberRepository.findAll(), isMemberIdRequire);
     }
 
     private String memberAddedResponse(MemberEntity customerInfoEntity){
@@ -34,7 +34,9 @@ public class MemberService {
                 .concat(" is created!");
     }
 
-    private MembersResponse getAllMemberResponse(List<MemberEntity> memberList){
+    private MembersResponse getAllMemberResponse(List<MemberEntity> memberList, boolean isMemberIdRequire){
+
+        // TO-DO isMemberIdRequire help on decide to send member id or not
 
         MembersResponse membersResponse = new MembersResponse();
         membersResponse.setMembersResponse(modelMapper.map(memberList, new TypeToken<List<MemberResponse>>() {}.getType()));
