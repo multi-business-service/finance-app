@@ -1,9 +1,14 @@
 package com.ak.finance.response;
 
 import com.ak.finance.constrants.AppEnumConstants;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+
 import lombok.Data;
 
 @Data
+@JsonInclude(Include.NON_NULL)
 public class MemberResponse {
 
     String firstName;
