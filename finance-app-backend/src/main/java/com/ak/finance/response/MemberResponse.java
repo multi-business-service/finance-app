@@ -22,4 +22,9 @@ public class MemberResponse {
     // As of now it is enabled only for admin user, it is optional for others
     String userName; // username is nothing but aadaar number;
     String password;
+
+    // tells whether member added/updated/deleted
+    String operation;
+    String OperationStatus;
+    String infoMessage;
 }

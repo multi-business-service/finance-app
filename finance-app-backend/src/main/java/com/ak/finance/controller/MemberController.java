@@ -40,7 +40,7 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getMember(mobileNo));
     }
     @DeleteMapping("/members/{mobileNo}")
-    public ResponseEntity<MemberResponse> removeMember(@PathVariable BigInteger mobileNo) {
-        return ResponseEntity.ok(memberService.getMember(mobileNo));
+    public ResponseEntity<String> removeMember(@PathVariable BigInteger mobileNo) {
+        return ResponseEntity.ok(memberService.removeMember(mobileNo));
     }
 }

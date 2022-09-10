@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -53,8 +54,9 @@ public class MemberService {
      * @param mobileNo is user mobile number
      * @return delete info message
      */
+    @Transactional
     public String removeMember(BigInteger mobileNo){
-        return memberRepository.deleteByMobileNo(mobileNo) == 1 ?
+        return memberRepository.removeByMobileNo(mobileNo) == 1 ?
                 "UserId ".concat(mobileNo.toString()).concat(" deleted successfully")
                 : "No records found for user id:".concat(mobileNo.toString());
     }
