@@ -30,6 +30,6 @@ public class MemberResponse {
 
     // tells whether member added/updated/deleted
     String operation;
-    String OperationStatus;
+    AppEnumConstants.OperationStatus OperationStatus;
     String infoMessage;
 }

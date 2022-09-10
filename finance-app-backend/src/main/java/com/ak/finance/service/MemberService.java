@@ -1,5 +1,6 @@
 package com.ak.finance.service;
 
+import com.ak.finance.constrants.AppEnumConstants;
 import com.ak.finance.model.MemberEntity;
 import com.ak.finance.repository.MemberRepository;
 import com.ak.finance.request.MemberInfoRequest;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MemberService {
@@ -27,8 +29,13 @@ public class MemberService {
      * @param memberInfoRequest contains member information
      * @return member added info message
      */
-    public String addCustomerInfo(MemberInfoRequest memberInfoRequest){
-        return memberAddedResponse(memberRepository.save(modelMapper.map(memberInfoRequest, MemberEntity.class)));
+    public MemberResponse addMember(MemberInfoRequest memberInfoRequest){
+        try {
+            return memberAddedResponse(memberRepository.save(modelMapper.map(memberInfoRequest, MemberEntity.class)));
+        }catch(Exception ex){
+            throw ex;
+        }
+
     }
 
     /**
@@ -61,13 +68,16 @@ public class MemberService {
                 : "No records found for user id:".concat(mobileNo.toString());
     }
 
-    private String memberAddedResponse(MemberEntity memberEntity){
-        return  memberEntity.getFirstName()
+    private MemberResponse memberAddedResponse(MemberEntity memberEntity){
+        MemberResponse memberResponse = modelMapper.map(memberEntity, MemberResponse.class);
+        memberResponse.setOperationStatus(AppEnumConstants.OperationStatus.ADDED);
+        memberResponse.setInfoMessage(memberEntity.getFirstName()
                 .concat(" has joined into ak finance. memberId:")
                 .concat(memberEntity.getCuid())
                 .concat( "and userId:")
                 .concat(memberEntity.getMobileNo().toString())
-                .concat(" is created!");
+                .concat(" is created!"));
+        return  memberResponse;
     }
 
     private MembersResponse getAllMemberResponse(List<MemberEntity> memberList, boolean isMemberIdRequire){

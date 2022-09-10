@@ -27,8 +27,8 @@ public class MemberController {
     MemberService memberService;
 
     @PostMapping("/add-member")
-    public ResponseEntity<String> addMember(@RequestBody MemberInfoRequest memberInfoRequest) {
-        return ResponseEntity.ok(memberService.addCustomerInfo(memberInfoRequest));
+    public ResponseEntity<MemberResponse> addMember(@RequestBody MemberInfoRequest memberInfoRequest) {
+        return ResponseEntity.ok(memberService.addMember(memberInfoRequest));
     }
     @GetMapping("/members")
     public ResponseEntity<MembersResponse> getAllMembers(@RequestParam(required = false) boolean isMemberIdRequire) {

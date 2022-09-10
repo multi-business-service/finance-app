@@ -12,6 +12,12 @@ public class AppEnumConstants {
         YOUTUBE;
     }
 
+    public enum OperationStatus{
+        ADDED,
+        UPDATED,
+        DELETED;
+    }
+
     public enum RePayMode{
         DAY,
         WEEK,
@@ -19,10 +25,15 @@ public class AppEnumConstants {
         YEAR;
     }
 
-    @AllArgsConstructor
+//    @AllArgsConstructor
+//    public enum MemberRole {
+//        ADMIN("ADMIN"),
+//        MEMBER("MEMBER");
+//        @Getter private String value;
+//    }
+
     public enum MemberRole {
-        ADMIN("ADMIN"),
-        MEMBER("MEMBER");
-        @Getter private String value;
-        }
+        ADMIN,
+        MEMBER
+    }
 }
