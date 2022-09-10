@@ -20,22 +20,51 @@ public class MemberService {
     private MemberRepository memberRepository;
     @Autowired
     private ModelMapper modelMapper;
-    public String addCustomerInfo(MemberInfoRequest customerInfoRequest){
-        return memberAddedResponse(memberRepository.save(modelMapper.map(customerInfoRequest, MemberEntity.class)));
+
+    /**
+     * Adding new members into DB
+     * @param memberInfoRequest contains member information
+     * @return member added info message
+     */
+    public String addCustomerInfo(MemberInfoRequest memberInfoRequest){
+        return memberAddedResponse(memberRepository.save(modelMapper.map(memberInfoRequest, MemberEntity.class)));
     }
 
+    /**
+     * Gives all members information
+     * @param isMemberIdRequire helps to mask memberId
+     * @return with all members information
+     */
     public MembersResponse getAllMembers(boolean isMemberIdRequire){
         return getAllMemberResponse(memberRepository.findAll(), isMemberIdRequire);
     }
 
+    /**
+     * Gives the member info for requested user id
+     * @param mobileNo is user mobile number
+     * @return with member information
+     */
     public MemberResponse getMember(BigInteger mobileNo){
         return modelMapper.map(memberRepository.findByMobileNo(mobileNo), MemberResponse.class);
     }
 
-    private String memberAddedResponse(MemberEntity customerInfoEntity){
-        return  customerInfoEntity.getFirstName()
-                .concat(" Joined successfully and member id ")
-                .concat(customerInfoEntity.getCuid())
+    /**
+     * Deletes the users
+     * @param mobileNo is user mobile number
+     * @return delete info message
+     */
+    public String removeMember(BigInteger mobileNo){
+        return memberRepository.deleteByMobileNo(mobileNo) == 1 ?
+                "UserId ".concat(mobileNo.toString()).concat(" deleted successfully")
+                : "No records found for user id:".concat(mobileNo.toString());
+    }
+
+    private String memberAddedResponse(MemberEntity memberEntity){
+        return  memberEntity.getFirstName()
+                .concat(" has joined into ak finance. memberId:")
+                .concat(memberEntity.getCuid())
+                .concat( "and userId:")
+                .concat(memberEntity.getMobileNo().toString())
                 .concat(" is created!");
     }
 

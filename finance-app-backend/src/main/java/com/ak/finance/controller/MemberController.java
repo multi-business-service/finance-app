@@ -7,6 +7,7 @@ import com.ak.finance.response.MembersResponse;
 import com.ak.finance.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,10 @@ public class MemberController {
 
     @GetMapping("/members/{mobileNo}")
     public ResponseEntity<MemberResponse> getMember(@PathVariable BigInteger mobileNo) {
+        return ResponseEntity.ok(memberService.getMember(mobileNo));
+    }
+    @DeleteMapping("/members/{mobileNo}")
+    public ResponseEntity<MemberResponse> removeMember(@PathVariable BigInteger mobileNo) {
         return ResponseEntity.ok(memberService.getMember(mobileNo));
     }
 }

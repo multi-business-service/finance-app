@@ -7,4 +7,5 @@ import java.math.BigInteger;
 
 public interface MemberRepository extends JpaRepository<MemberEntity, String> {
     MemberEntity findByMobileNo(BigInteger mobileNo);
+    long deleteByMobileNo(BigInteger mobileNo);
 }
