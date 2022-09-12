@@ -35,7 +35,6 @@ public class MemberService {
         }catch(Exception ex){
             throw ex;
         }
-
     }
 
     /**

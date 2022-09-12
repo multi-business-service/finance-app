@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.ak.finance</groupId>
-	<artifactId>finance-app-backend</artifactId>
+	<groupId>com.ak.common</groupId>
+	<artifactId>exception-handler</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>finance-app-backend</name>
-	<description>Finance App backend server </description>
+	<name>finance-exception-handler</name>
+	<description>ak exception handling </description>
 
 	<parent>
 		<groupId>com.ak.finance</groupId>
@@ -48,13 +48,4 @@
 			<artifactId>modelmapper</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 </project>
