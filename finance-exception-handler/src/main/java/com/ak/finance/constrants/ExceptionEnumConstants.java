@@ -37,15 +37,15 @@ public class ExceptionEnumConstants {
         HIGH;
     }
 
-    public static enum InternalCode {
-
+    public static enum Type {
         EXTERNAL_CONNECTION_ERROR,
         INTERNAL_CONNECTION_ERROR,
         INTERNAL_CLIENT_ERROR,
         INTERNAL_SERVER_ERROR,
         EXTERNAL_CLIENT_ERROR,
         EXTERNAL_SERVER_ERROR,
-        CART_VALIDATION_ERROR,
+        APP_VALIDATION_ERROR,
+        HTTP_MESSAGE_NOT_READBLE_ERROR,
         DATA_CONFIG_ERROR,
         APP_CONFIG_ERROR,
         SCHEMA_ERROR,
@@ -53,8 +53,11 @@ public class ExceptionEnumConstants {
         INTERNAL_ERROR,
         UNAUTHORIZED_ACCESS,
         JACKSON_ERROR,
-        PROTO_ERROR,
+        PROTO_ERROR;
+    }
 
+    public static enum Code {
+        INTERNAL_ERROR,
         PARSING_ERROR,
         SCHEMA_VALIDATON_ERROR,
         ILLEGAL_ARGUMENT_FOUND,
@@ -68,6 +71,6 @@ public class ExceptionEnumConstants {
         DATA_ERROR,
         VALIDATION_ERROR,
         AUTHENTICATION_ERROR,
-        SPE_INTERNAL_ERROR;
+        SYSTEM_INTERNAL_ERROR;
     }
 }
