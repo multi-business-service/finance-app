@@ -31,8 +31,8 @@ public class MemberController {
         return ResponseEntity.ok(memberService.addMember(memberInfoRequest));
     }
     @GetMapping("/members")
-    public ResponseEntity<MembersResponse> getAllMembers(@RequestParam(required = false) boolean isMemberIdRequire) {
-        return ResponseEntity.ok(memberService.getAllMembers(isMemberIdRequire));
+    public ResponseEntity<MembersResponse> getAllMembers() {
+        return ResponseEntity.ok(memberService.getAllMembers());
     }
 
     @GetMapping("/members/{mobileNo}")

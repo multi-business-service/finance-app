@@ -49,8 +49,8 @@ public class MemberService {
      * @param isMemberIdRequire helps to mask memberId
      * @return with all members information
      */
-    public MembersResponse getAllMembers(boolean isMemberIdRequire){
-        return getAllMemberResponse(memberRepository.findAll(), isMemberIdRequire);
+    public MembersResponse getAllMembers(){
+        return getAllMemberResponse(memberRepository.findAll());
     }
 
     /**
@@ -109,7 +109,7 @@ public class MemberService {
         return  memberResponse;
     }
 
-    private MembersResponse getAllMemberResponse(List<MemberEntity> memberList, boolean isMemberIdRequire){
+    private MembersResponse getAllMemberResponse(List<MemberEntity> memberList){
 
         // TO-DO isMemberIdRequire help on decide to send member id or not
         MembersResponse membersResponse = new MembersResponse();
