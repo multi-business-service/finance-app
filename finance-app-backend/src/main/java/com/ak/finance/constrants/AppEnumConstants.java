@@ -12,10 +12,9 @@ public class AppEnumConstants {
         YOUTUBE;
     }
 
-    public enum OperationStatus{
-        ADDED,
-        UPDATED,
-        DELETED;
+    public enum Status{
+        SUCCESS,
+        FAILURE
     }
 
     public enum RePayMode{

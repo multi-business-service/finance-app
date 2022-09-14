@@ -54,4 +54,18 @@ public class FinanceRunTimeException extends RuntimeException {
         this.httpStatus = httpStatus;
     }
 
+    public FinanceRunTimeException(Group group, Type type, Code code, Source source, Severity severity,
+                                   String application, String message, Throwable ex, HttpStatus httpStatus) {
+        super(message, ex);
+        this.group = group;
+        this.type = type;
+        this.code = code;
+        this.source = source;
+        this.severity = severity;
+        this.application = application;
+        this.message = message;
+        this.originalException = ex;
+        this.httpStatus = httpStatus;
+    }
+
 }

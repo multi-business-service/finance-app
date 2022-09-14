@@ -1,5 +1,6 @@
 package com.ak.finance.controller;
 
+import com.ak.finance.constrants.AppConstants;
 import com.ak.finance.constrants.ExceptionEnumConstants.Code;
 import com.ak.finance.constrants.ExceptionEnumConstants.Group;
 import com.ak.finance.constrants.ExceptionEnumConstants.Severity;
@@ -7,6 +8,7 @@ import com.ak.finance.constrants.ExceptionEnumConstants.Source;
 import com.ak.finance.constrants.ExceptionEnumConstants.Type;
 import com.ak.finance.exception.FinanceRunTimeException;
 import com.ak.finance.response.ErrorResponse;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,12 +32,11 @@ import java.util.Objects;
 @ControllerAdvice
 public class ResponseEntityExceptionController extends ResponseEntityExceptionHandler {
 
-    private final ZoneId DEFAULT_ZONE_ID = ZoneId.of("UTC");
     @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
     protected ResponseEntity<Object> handleIllegalArgument(RuntimeException ex, WebRequest request) {
         FinanceRunTimeException exception = new FinanceRunTimeException(Group.APPLICATION_ERROR,
                 Type.APP_CONFIG_ERROR, Code.ILLEGAL_ARGUMENT_FOUND, Source.INTERNAL, Severity.LOW, "Illegal Argument Exception occurred",
-                Timestamp.valueOf(LocalDateTime.now(this.DEFAULT_ZONE_ID)), ex, HttpStatus.INTERNAL_SERVER_ERROR);
+                Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)), ex, HttpStatus.INTERNAL_SERVER_ERROR);
         return this.handleExceptionInternal(ex, exception, this.getResponseHeaders(request), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
@@ -43,23 +44,23 @@ public class ResponseEntityExceptionController extends ResponseEntityExceptionHa
     protected ResponseEntity<Object> handleSaxExceptions(Exception ex, WebRequest request) {
         FinanceRunTimeException exception = new FinanceRunTimeException(Group.VALIDATION_ERROR, Type.JACKSON_ERROR,
                 Code.PARSING_ERROR, Source.INTERNAL, Severity.LOW,  ex.getMessage(),
-                Timestamp.valueOf(LocalDateTime.now(this.DEFAULT_ZONE_ID)), ex, HttpStatus.BAD_REQUEST);
+                Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)), ex, HttpStatus.BAD_REQUEST);
         return this.handleExceptionInternal(ex, exception, this.getResponseHeaders(request), HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         FinanceRunTimeException exception = new FinanceRunTimeException(Group.VALIDATION_ERROR, Type.JACKSON_ERROR,
                 Code.PARSING_ERROR, Source.INTERNAL, Severity.LOW,  this.constructErrorMessageForSchemaErrors(ex),
-                Timestamp.valueOf(LocalDateTime.now(this.DEFAULT_ZONE_ID)), ex, HttpStatus.BAD_REQUEST);
+                Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)), ex, HttpStatus.BAD_REQUEST);
         return this.handleExceptionInternal(ex, exception, this.getResponseHeaders(request), HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         FinanceRunTimeException exception = new FinanceRunTimeException(Group.VALIDATION_ERROR, Type.HTTP_MESSAGE_NOT_READBLE_ERROR,
                 Code.SCHEMA_VALIDATON_ERROR, Source.INTERNAL, Severity.LOW,  ex.getMessage(),
-                Timestamp.valueOf(LocalDateTime.now(this.DEFAULT_ZONE_ID)), ex, HttpStatus.BAD_REQUEST);
+                Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)), ex, HttpStatus.BAD_REQUEST);
         return this.handleExceptionInternal(ex, exception, this.getResponseHeaders(request), HttpStatus.BAD_REQUEST, request);
     }
 
@@ -72,7 +73,7 @@ public class ResponseEntityExceptionController extends ResponseEntityExceptionHa
     protected ResponseEntity<Object> handleNullPointerException(NullPointerException ex, WebRequest request) {
         FinanceRunTimeException exception = new FinanceRunTimeException(Group.SYSTEM_INTERNAL_ERROR,
                 Type.INTERNAL_ERROR, Code.INTERNAL_ERROR, Source.INTERNAL,
-                Severity.HIGH, "Null pointer exception", Timestamp.valueOf(LocalDateTime.now(this.DEFAULT_ZONE_ID)),
+                Severity.HIGH, "Null pointer exception", Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)),
                 ex, HttpStatus.INTERNAL_SERVER_ERROR);
         return this.handleExceptionInternal(ex, exception, this.getResponseHeaders(request), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
@@ -87,7 +88,7 @@ public class ResponseEntityExceptionController extends ResponseEntityExceptionHa
     protected ResponseEntity<Object> handleUnknownException(RuntimeException ex, WebRequest request) {
         FinanceRunTimeException exception = new FinanceRunTimeException(
                 Group.SYSTEM_INTERNAL_ERROR, Type.INTERNAL_ERROR, Code.INTERNAL_ERROR, Source.INTERNAL, Severity.HIGH,
-                "AK-FINANCE", "Runtime Exception", Timestamp.valueOf(LocalDateTime.now(this.DEFAULT_ZONE_ID)),
+                "AK-FINANCE", "Runtime Exception", Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)),
                 ex,  HttpStatus.INTERNAL_SERVER_ERROR);
         return this.handleExceptionInternal(ex, exception, this.getResponseHeaders(request), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
@@ -106,8 +107,7 @@ public class ResponseEntityExceptionController extends ResponseEntityExceptionHa
                 ((FinanceRunTimeException)body).getGroup().name(),
                 ((FinanceRunTimeException)body).getType().name(),
                 ((FinanceRunTimeException)body).getCode().name(),
-                ((FinanceRunTimeException)body).getSource().name(),
-                ((FinanceRunTimeException)body).getTimestamp(),
+                ((FinanceRunTimeException)body).getSource().name(), ((FinanceRunTimeException)body).getTimestamp() == null ? Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)) : ((FinanceRunTimeException)body).getTimestamp(),
                 ((FinanceRunTimeException)body).getApplication(),
                 ((FinanceRunTimeException)body).getMessage(),
                 ((ServletWebRequest)request).getRequest().getRequestURI())
@@ -116,7 +116,7 @@ public class ResponseEntityExceptionController extends ResponseEntityExceptionHa
                 Type.INTERNAL_ERROR.name(),
                 Type.INTERNAL_ERROR.name(),
                 Source.INTERNAL.name(),
-                Timestamp.valueOf(LocalDateTime.now(this.DEFAULT_ZONE_ID)),
+                Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)),
                 null,
                 ex.getMessage(),
                 ((ServletWebRequest)request).getRequest().getRequestURI());

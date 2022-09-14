@@ -1,6 +1,10 @@
 package com.ak.finance.service;
 
+import com.ak.finance.constrants.AppConstants;
 import com.ak.finance.constrants.AppEnumConstants;
+import com.ak.finance.constrants.ExceptionEnumConstants;
+import com.ak.finance.exception.FinanceRunTimeException;
+import com.ak.finance.handler.AppExceptionHandler;
 import com.ak.finance.model.MemberEntity;
 import com.ak.finance.repository.MemberRepository;
 import com.ak.finance.request.MemberInfoRequest;
@@ -9,12 +13,15 @@ import com.ak.finance.response.MembersResponse;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class MemberService {
@@ -33,7 +40,7 @@ public class MemberService {
         try {
             return memberAddedResponse(memberRepository.save(modelMapper.map(memberInfoRequest, MemberEntity.class)));
         }catch(Exception ex){
-            throw ex;
+            throw  AppExceptionHandler.handleDBException(ex);
         }
     }
 
@@ -56,24 +63,47 @@ public class MemberService {
     }
 
     /**
-     * Deletes the users
+     * Deletes the member
      * @param mobileNo is user mobile number
      * @return delete info message
      */
     @Transactional
-    public String removeMember(BigInteger mobileNo){
-        return memberRepository.removeByMobileNo(mobileNo) == 1 ?
-                "UserId ".concat(mobileNo.toString()).concat(" deleted successfully")
-                : "No records found for user id:".concat(mobileNo.toString());
+    public MemberResponse removeMember(BigInteger mobileNo){
+        List<MemberEntity> entityResponse;
+        try{
+            entityResponse = memberRepository.removeByMobileNo(mobileNo);;
+        }catch(Exception ex){
+            throw AppExceptionHandler.handleDBException(ex);
+        }
+        return memberRemovedResponse(entityResponse);
+    }
+    private MemberResponse memberRemovedResponse(List<MemberEntity> memberEntities){
+        if (CollectionUtils.isEmpty(memberEntities)){
+            throw new FinanceRunTimeException(
+                    ExceptionEnumConstants.Group.DATA_ERROR, ExceptionEnumConstants.Type.DATABASE_ERROR, ExceptionEnumConstants.Code.DATA_NOT_FOUND, ExceptionEnumConstants.Source.INTERNAL, ExceptionEnumConstants.Severity.LOW,
+                    "AK-FINANCE", "Data not exist", Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)),
+                    null,  HttpStatus.BAD_REQUEST);
+        }
+        // memberEntities always has only one entry, so 0 index can be considered directly
+        MemberResponse memberResponse = modelMapper.map(memberEntities.get(0), MemberResponse.class);
+        memberResponse.setStatus(AppEnumConstants.Status.SUCCESS);
+        memberResponse.setInfoMessage(memberResponse.getFirstName()
+                .concat(" has deleted from ak finance. memberId:")
+                .concat(memberResponse.getCuid())
+                .concat( " and userId:")
+                .concat(memberResponse.getMobileNo())
+                .concat(" is deleted!"));
+        return memberResponse;
+
     }
 
     private MemberResponse memberAddedResponse(MemberEntity memberEntity){
         MemberResponse memberResponse = modelMapper.map(memberEntity, MemberResponse.class);
-        memberResponse.setOperationStatus(AppEnumConstants.OperationStatus.ADDED);
+        memberResponse.setStatus(AppEnumConstants.Status.SUCCESS);
         memberResponse.setInfoMessage(memberEntity.getFirstName()
                 .concat(" has joined into ak finance. memberId:")
                 .concat(memberEntity.getCuid())
-                .concat( "and userId:")
+                .concat( " and userId:")
                 .concat(memberEntity.getMobileNo().toString())
                 .concat(" is created!"));
         return  memberResponse;

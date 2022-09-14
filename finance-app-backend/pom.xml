@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<exception.handler.version>0.0.1-SNAPSHOT</exception.handler.version>
 	</properties>
 
 	<dependencies>
@@ -46,6 +47,11 @@
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ak.common</groupId>
+			<artifactId>exception-handler</artifactId>
+			<version>${exception.handler.version}</version>
 		</dependency>
 	</dependencies>
 

@@ -61,6 +61,8 @@ public class ExceptionEnumConstants {
         PARSING_ERROR,
         SCHEMA_VALIDATON_ERROR,
         ILLEGAL_ARGUMENT_FOUND,
+        DATA_NOT_FOUND,
+        DATA_ALREADY_EXIST,
         MESSAGE_NOT_READABLE;
     }
 

@@ -28,8 +28,7 @@ public class MemberResponse {
     String userName; // username is nothing but aadaar number;
     String password;
 
-    // tells whether member added/updated/deleted
-    String operation;
-    AppEnumConstants.OperationStatus OperationStatus;
+    // tells Request process status
+    AppEnumConstants.Status status;
     String infoMessage;
 }
