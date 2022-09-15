@@ -13,19 +13,19 @@ import java.util.Date;
 @Data
 public class FinanceRunTimeException extends RuntimeException {
 
-    private Group group;
-    private Type type;
-    private Code code;
-    private Source source;
-    private Severity severity;
+    private final Group group;
+    private final Type type;
+    private final Code code;
+    private final Source source;
+    private final Severity severity;
     private Date timestamp;
-    private String application;
+    private String system;
     private String message;
     private Throwable originalException;
     private HttpStatus httpStatus;
 
     public FinanceRunTimeException(Group group, Type type, Code code, Source source, Severity severity,
-                                   String application, String message, Date timestamp, Throwable ex, HttpStatus httpStatus) {
+                                   String system, String message, Date timestamp, Throwable ex, HttpStatus httpStatus) {
         super(message, ex);
         this.group = group;
         this.type = type;
@@ -33,7 +33,7 @@ public class FinanceRunTimeException extends RuntimeException {
         this.source = source;
         this.severity = severity;
         this.timestamp = timestamp;
-        this.application = application;
+        this.system = system;
         this.message = message;
         this.originalException = ex;
         this.httpStatus = httpStatus;
@@ -62,7 +62,7 @@ public class FinanceRunTimeException extends RuntimeException {
         this.code = code;
         this.source = source;
         this.severity = severity;
-        this.application = application;
+        this.system = application;
         this.message = message;
         this.originalException = ex;
         this.httpStatus = httpStatus;

@@ -1,8 +1,8 @@
 package com.ak.finance.service;
 
-import com.ak.finance.constrants.AppConstants;
-import com.ak.finance.constrants.AppEnumConstants;
+import com.ak.finance.constants.FinanceAPIConstants;
 import com.ak.finance.constrants.ExceptionEnumConstants;
+import com.ak.finance.controller.constrants.AppEnumConstants;
 import com.ak.finance.exception.FinanceRunTimeException;
 import com.ak.finance.handler.AppExceptionHandler;
 import com.ak.finance.model.MemberEntity;
@@ -13,6 +13,7 @@ import com.ak.finance.response.MembersResponse;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +31,12 @@ public class MemberService {
     private MemberRepository memberRepository;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private AppExceptionHandler appExceptionHandler;
+
+    @Value("${application.name}")
+    private String appName;
+
 
     /**
      * Adding new members into DB
@@ -40,13 +47,12 @@ public class MemberService {
         try {
             return memberAddedResponse(memberRepository.save(modelMapper.map(memberInfoRequest, MemberEntity.class)));
         }catch(Exception ex){
-            throw  AppExceptionHandler.handleDBException(ex);
+            throw  appExceptionHandler.handleDBException(ex);
         }
     }
 
     /**
      * Gives all members information
-     * @param isMemberIdRequire helps to mask memberId
      * @return with all members information
      */
     public MembersResponse getAllMembers(){
@@ -71,9 +77,9 @@ public class MemberService {
     public MemberResponse removeMember(BigInteger mobileNo){
         List<MemberEntity> entityResponse;
         try{
-            entityResponse = memberRepository.removeByMobileNo(mobileNo);;
+            entityResponse = memberRepository.removeByMobileNo(mobileNo);
         }catch(Exception ex){
-            throw AppExceptionHandler.handleDBException(ex);
+            throw appExceptionHandler.handleDBException(ex);
         }
         return memberRemovedResponse(entityResponse);
     }
@@ -81,7 +87,7 @@ public class MemberService {
         if (CollectionUtils.isEmpty(memberEntities)){
             throw new FinanceRunTimeException(
                     ExceptionEnumConstants.Group.DATA_ERROR, ExceptionEnumConstants.Type.DATABASE_ERROR, ExceptionEnumConstants.Code.DATA_NOT_FOUND, ExceptionEnumConstants.Source.INTERNAL, ExceptionEnumConstants.Severity.LOW,
-                    "AK-FINANCE", "Data not exist", Timestamp.valueOf(LocalDateTime.now(AppConstants.DEFAULT_ZONE_ID)),
+                    appName, "Data not exist", Timestamp.valueOf(LocalDateTime.now(FinanceAPIConstants.DEFAULT_ZONE_ID)),
                     null,  HttpStatus.BAD_REQUEST);
         }
         // memberEntities always has only one entry, so 0 index can be considered directly

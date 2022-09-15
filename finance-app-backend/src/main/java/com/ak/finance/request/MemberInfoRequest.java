@@ -1,6 +1,6 @@
 package com.ak.finance.request;
 
-import com.ak.finance.constrants.AppEnumConstants;
+import com.ak.finance.controller.constrants.AppEnumConstants;
 import com.sun.istack.NotNull;
 import lombok.Data;
 

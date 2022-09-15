@@ -1,6 +1,6 @@
 package com.ak.finance.response;
 
-import com.ak.finance.constrants.AppEnumConstants;
+import com.ak.finance.controller.constrants.AppEnumConstants;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 

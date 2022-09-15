@@ -1,6 +1,6 @@
 package com.ak.finance.model;
 
-import com.ak.finance.constrants.AppEnumConstants;
+import com.ak.finance.controller.constrants.AppEnumConstants;
 import com.ak.finance.helper.SequenceIdGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;

@@ -1,4 +1,4 @@
-package com.ak.finance.constrants;
+package com.ak.finance.controller.constrants;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
