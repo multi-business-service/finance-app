@@ -1,4 +1,4 @@
-package com.ak.common.core.controller;
+package com.ak.common.core.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.marker.Markers;
@@ -19,9 +19,10 @@ public class SynchronousInterceptor extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        System.out.println("filter started");
         preProcess(request);
         filterChain.doFilter(request, response);
-
+        System.out.println("filter ends");
     }
 
     private void preProcess(HttpServletRequest request) throws IOException {
