@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ak.common</groupId>
-	<artifactId>exception-handler</artifactId>
+	<artifactId>synchronous-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>finance-exception-handler</name>
-	<description>ak exception handling </description>
+	<name>synchronous-core</name>
+	<description> processing in out events</description>
 
 	<parent>
 		<groupId>com.ak.finance</groupId>

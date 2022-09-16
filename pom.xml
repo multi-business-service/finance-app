@@ -19,7 +19,8 @@
 
 	<modules>
 		<module>finance-app-backend</module>
-		<module>finance-exception-handler</module>
+		<module>exception-handler</module>
+		<module>synchronous-core</module>
 	</modules>
 
 	<properties>
@@ -30,7 +31,8 @@
 		<junit.verion>4.13.2</junit.verion>
 		<mockito.version>4.8.0</mockito.version>
 		<jacoco.version>0.8.8</jacoco.version>
-<!--		<postgresql.version>4.</postgresql.version>-->
+		<logback.stash.version>7.2</logback.stash.version>
+		<apache.common.io.version>2.11.0</apache.common.io.version>
 	</properties>
 
 	<dependencyManagement>
@@ -88,6 +90,17 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logback.stash.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${apache.common.io.version}</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<pluginManagement>
