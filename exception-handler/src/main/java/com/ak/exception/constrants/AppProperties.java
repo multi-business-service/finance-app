@@ -1,4 +1,4 @@
-package com.ak.finance.constrants;
+package com.ak.exception.constrants;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

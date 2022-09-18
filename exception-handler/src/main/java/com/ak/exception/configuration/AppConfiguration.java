@@ -1,4 +1,4 @@
-package com.ak.finance.configuration;
+package com.ak.exception.configuration;
 
 import org.springframework.context.annotation.Configuration;
 

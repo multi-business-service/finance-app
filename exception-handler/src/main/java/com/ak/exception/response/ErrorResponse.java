@@ -1,4 +1,4 @@
-package com.ak.finance.response;
+package com.ak.exception.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

@@ -1,3 +1,6 @@
+oAuth token registeration
+https://dev-62334795-admin.okta.com/admin/getting-started
+
 # Spring Boot JPA MySQL - Building Rest CRUD API example
 
 For more detail, please visit:

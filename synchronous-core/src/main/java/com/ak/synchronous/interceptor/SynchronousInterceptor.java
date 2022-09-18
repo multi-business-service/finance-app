@@ -1,4 +1,4 @@
-package com.ak.common.core.interceptor;
+package com.ak.synchronous.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.marker.Markers;

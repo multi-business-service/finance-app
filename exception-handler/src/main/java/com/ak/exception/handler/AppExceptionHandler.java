@@ -1,12 +1,10 @@
-package com.ak.finance.handler;
+package com.ak.exception.handler;
 
-import com.ak.finance.constrants.AppConstants;
-import com.ak.finance.constrants.AppProperties;
-import com.ak.finance.constrants.ExceptionEnumConstants;
-import com.ak.finance.exception.FinanceRunTimeException;
+import com.ak.exception.constrants.AppProperties;
+import com.ak.exception.constrants.ExceptionEnumConstants;
+import com.ak.exception.exception.FinanceRunTimeException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
