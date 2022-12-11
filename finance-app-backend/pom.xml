@@ -4,7 +4,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ak.finance</groupId>
 	<artifactId>finance-app-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>finance-app-backend</name>
 	<description>Finance App backend server </description>
 

@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ak.common</groupId>
-	<artifactId>synchronous-core</artifactId>
-	<name>synchronous-core</name>
-	<description> processing in out events</description>
+	<artifactId>logging-core</artifactId>
+	<name>logging-core</name>
+	<description> logging core framework</description>
 
 	<parent>
 		<groupId>com.ak.finance</groupId>
@@ -13,16 +13,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-<!--	<properties>-->
-<!--		<java.version>1.8</java.version>-->
-<!--	</properties>-->
-
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

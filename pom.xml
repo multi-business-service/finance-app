@@ -21,6 +21,7 @@
 		<module>finance-app-backend</module>
 		<module>exception-handler</module>
 		<module>synchronous-core</module>
+		<module>logging-core</module>
 	</modules>
 
 	<properties>
